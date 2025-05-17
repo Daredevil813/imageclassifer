@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Vision AI</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.6.0/dist/tf.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <div class="logo-section">
+                <div class="logo-icon">🦁</div>
+                <h1>Animal Vision AI</h1>
+            </div>
+            <p class="header-subtitle">Upload an image to identify animals using advanced AI</p>
+        </header>
+
+        <main class="main-content">
+            <div class="card upload-container">
+                <div class="card-header">
+                    <h2>Image Upload</h2>
+                    <span class="card-subtitle">Supported animals: cats, dogs, horses, and more</span>
+                </div>
+                
+                <div class="upload-box" id="dropZone">
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                        </div>
+                        <div class="upload-text">
+                            <p class="primary-text">Drop your image here or <span class="browse-text">browse</span></p>
+                            <p class="secondary-text">Supports JPG, PNG files</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-container" hidden>
+                    <div class="preview-header">
+                        <h3>Preview</h3>
+                        <button id="clearButton" class="icon-button">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="preview-image-container">
+                        <img id="imagePreview" alt="Preview">
+                    </div>
+                    <button id="processButton" class="primary-button" disabled>
+                        <span class="button-text">Analyze Image</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="results" class="card results" hidden>
+                <button class="close-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+                <div class="card-header">
+                    <h2>Analysis Results</h2>
+                    <div class="confidence-badge">AI Confidence</div>
+                </div>
+                <div id="resultContent" class="result-content"></div>
+            </div>
+
+            <div id="loading" class="loading-overlay" hidden>
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <p>Analyzing your image...</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Powered by TensorFlow.js • Made with 💜</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

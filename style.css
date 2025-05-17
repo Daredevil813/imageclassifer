@@ -1,0 +1,490 @@
+:root {
+    --primary: #8b5cf6;
+    --primary-light: #a78bfa;
+    --primary-dark: #7c3aed;
+    --success: #059669;
+    --danger: #dc2626;
+    --background: #1f2937;
+    --card: #374151;
+    --text: #f3f4f6;
+    --text-light: #9ca3af;
+    --border: #4b5563;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animal silhouettes background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 100 100' fill='%23ffffff10'%3E%3Cpath d='M30,50c0-11,9-20,20-20s20,9,20,20s-9,20-20,20S30,61,30,50z M50,35c-8.3,0-15,6.7-15,15s6.7,15,15,15s15-6.7,15-15S58.3,35,50,35z'/%3E%3C/svg%3E"), 
+                    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100' fill='%23ffffff08'%3E%3Cpath d='M50,30L70,70H30L50,30z'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    opacity: 0.1;
+    z-index: -1;
+    animation: floatBackground 60s linear infinite;
+}
+
+@keyframes floatBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+}
+
+h1 {
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    transition: all 0.3s ease;
+}
+
+h1:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #fff 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+}
+
+.header-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.header-subtitle:hover {
+    color: var(--text);
+    transform: translateY(-1px);
+}
+
+.upload-container {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.upload-box {
+    border: 2px dashed var(--primary-light);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(55, 65, 81, 0.5);
+}
+
+.upload-box:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    background: rgba(55, 65, 81, 0.8);
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.upload-content p {
+    color: var(--text-light);
+    font-size: 1.4rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.upload-content p:hover {
+    color: var(--text);
+    transform: translateY(-1px);
+}
+
+.browse-text {
+    color: var(--primary);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.browse-text:hover {
+    color: var(--primary-light);
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.preview-container {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#imagePreview {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    object-fit: contain;
+}
+
+button {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+}
+
+button:disabled {
+    background: var(--text-light);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#clearButton {
+    background: linear-gradient(135deg, var(--danger) 0%, #ef4444 100%);
+}
+
+.results {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 600px;
+    width: calc(100% - 40px);
+    animation: bounce 15s linear infinite;
+}
+
+/* Bouncing animation */
+@keyframes bounce {
+    0% {
+        transform: translate(-50%, 0);
+    }
+    20% {
+        transform: translate(calc(-50% + 100px), 50px);
+    }
+    40% {
+        transform: translate(calc(-50% - 100px), 20px);
+    }
+    60% {
+        transform: translate(calc(-50% + 50px), 40px);
+    }
+    80% {
+        transform: translate(calc(-50% - 50px), 10px);
+    }
+    100% {
+        transform: translate(-50%, 0);
+    }
+}
+
+.results h2, .results h3 {
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.prediction-item {
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+}
+
+.top-prediction {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+    border: 2px solid var(--primary);
+}
+
+.prediction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.card-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.card-header h2:hover {
+    color: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.card-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+}
+
+.card-subtitle:hover {
+    color: var(--text);
+    transform: translateY(-1px);
+}
+
+.animal-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    transition: all 0.3s ease;
+}
+
+.animal-name:hover {
+    color: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.translation {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.probability-bar {
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 0.75rem 0;
+}
+
+.probability-fill {
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.probability-value {
+    font-weight: 700;
+    color: var(--primary-light);
+    font-size: 1.1rem;
+}
+
+.fun-fact {
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid var(--border);
+}
+
+.fun-fact-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    background: var(--primary);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    color: white;
+}
+
+.fun-fact p {
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--primary-light);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.app-header {
+    margin-bottom: 1.5rem;
+}
+
+/* Add margin to the upload container when results are present */
+.results + .upload-container {
+    margin-top: 1.5rem;
+}
+
+/* Add glow effect on hover */
+.results:hover {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+    animation-play-state: paused; /* Pause animation on hover */
+}
+
+/* Close button */
+.results .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    transition: all 0.3s ease;
+    box-shadow: none;
+}
+
+.results .close-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    transform: rotate(90deg);
+}
+
+.results .close-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Adjust content spacing */
+.results h2 {
+    font-size: 1.8rem;
+    margin-right: 30px;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .container {
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .upload-container, .results {
+        padding: 1.25rem;
+    }
+    
+    .upload-box {
+        padding: 1.5rem;
+    }
+    
+    .prediction-item {
+        padding: 1.25rem;
+    }
+    
+    .fun-fact {
+        padding: 1rem;
+    }
+    
+    button {
+        width: 100%;
+    }
+
+    .results {
+        padding: 1rem;
+        top: 5px;
+    }
+
+    .results h2 {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        padding-top: 80px;
+    }
+} 
